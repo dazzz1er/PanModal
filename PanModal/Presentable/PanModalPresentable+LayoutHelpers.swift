@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AsyncDisplayKit
 
 /**
  ⚠️ [Internal Only] ⚠️
@@ -94,7 +95,15 @@ extension PanModalPresentable where Self: UIViewController {
             view.layoutIfNeeded()
             let targetSize = CGSize(width: (presentedVC?.containerView?.bounds ?? UIScreen.main.bounds).width,
                                     height: UIView.layoutFittingCompressedSize.height)
-            let intrinsicHeight = view.systemLayoutSizeFitting(targetSize).height
+            var intrinsicHeight: CGFloat = 0
+            if let `self` = self as? ASViewController<ASDisplayNode> {
+                print("using ASDK")
+                print(targetSize)
+                intrinsicHeight = `self`.node.calculateLayoutThatFits(ASSizeRange(min: CGSize(width: targetSize.width, height: 0), max: CGSize(width: targetSize.width, height: 999))).size.height
+            } else {
+                print("using AL")
+                intrinsicHeight = view.systemLayoutSizeFitting(targetSize).height
+            }
             return bottomYPos - (intrinsicHeight + bottomLayoutOffset)
         }
     }
