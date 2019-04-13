@@ -98,8 +98,10 @@ extension PanModalPresentable where Self: UIViewController {
             var intrinsicHeight: CGFloat = 0
             if let `self` = self as? ASViewController<ASDisplayNode> {
                 print("using ASDK")
-                print(targetSize)
                 intrinsicHeight = `self`.node.calculateLayoutThatFits(ASSizeRange(min: CGSize(width: targetSize.width, height: 0), max: CGSize(width: targetSize.width, height: 999))).size.height
+            } else if let `self` = self as? ASNavigationController, let topVC = `self`.topViewController as? ASViewController<ASDisplayNode> {
+                print("using ASDK navigation")
+                intrinsicHeight = topVC.node.calculateLayoutThatFits(ASSizeRange(min: CGSize(width: targetSize.width, height: 0), max: CGSize(width: targetSize.width, height: 999))).size.height
             } else {
                 print("using AL")
                 intrinsicHeight = view.systemLayoutSizeFitting(targetSize).height
