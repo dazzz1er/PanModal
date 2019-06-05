@@ -18,7 +18,7 @@ import UIKit
  }
  ```
  */
-public protocol PanModalPresentable {
+public protocol PanModalPresentable: AnyObject {
 
     /**
      The scroll view embedded in the view controller.
@@ -68,6 +68,22 @@ public protocol PanModalPresentable {
      Default Value is 0.8.
      */
     var springDamping: CGFloat { get }
+
+    /**
+     The transitionDuration value is used to set the speed of animation during a transition,
+     including initial presentation.
+
+     Default value is 0.5.
+    */
+    var transitionDuration: Double { get }
+
+    /**
+     The animation options used when performing animations on the PanModal, utilized mostly
+     during a transition.
+
+     Default value is [.curveEaseInOut, .allowUserInteraction, .beginFromCurrentState].
+    */
+    var transitionAnimationOptions: UIView.AnimationOptions { get }
 
     /**
      The background view alpha.
