@@ -367,6 +367,7 @@ private extension PanModalPresentationController {
             else { return }
 
         let adjustedSize = CGSize(width: frame.size.width, height: frame.size.height - anchoredYPosition)
+        panContainerView.backgroundColor = .white
         panContainerView.frame.size = frame.size
         presentedViewController.view.frame = CGRect(origin: .zero, size: adjustedSize)
     }
@@ -392,6 +393,15 @@ private extension PanModalPresentationController {
         backgroundView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         backgroundView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         backgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+//        let coverView = UIView()
+//        containerView.addSubview(coverView)
+//        coverView.backgroundColor = .white
+//        containerView.addSubview(coverView)
+//        coverView.translatesAutoresizingMaskIntoConstraints = false
+//        coverView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor).isActive = true
+//        coverView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor).isActive = true
+//        coverView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
+//        coverView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
 
     /**
